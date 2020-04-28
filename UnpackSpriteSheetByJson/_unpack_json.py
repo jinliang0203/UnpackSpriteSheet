@@ -54,9 +54,15 @@ if __name__ == '__main__':
 
     rootdir = sys.argv[1]
     #'E:/_github/Python/TexturePacker'
+    
+    outFile = 'out'
+    
+    outDir = os.path.join(rootdir, outFile)
 
     file_name_set = set()
     if os.path.exists(rootdir):
+        if not os.path.exists(outDir):
+            os.makedirs(outDir)
         list_file = os.listdir(rootdir)
         for i in range(0,len(list_file)):
             one_file_name = list_file[i]
@@ -72,12 +78,12 @@ if __name__ == '__main__':
         if os.path.exists(json_filename):
             if os.path.exists(png_filename):
                 try:
-                    gen_png_from_json(os.path.join(rootdir, file_name), json_filename, png_filename )
+                    gen_png_from_json(os.path.join( outFile, file_name), json_filename, png_filename )
                 except Exception:
                     print '!!!!!!!!!!!!!!!!!!!!' + json_filename + ' json error !!!!!!!!!!!!!!!!!!!!!'
             elif os.path.exists(jpg_filename):
                 try:
-                    gen_png_from_json(os.path.join(rootdir, file_name), json_filename, jpg_filename )
+                    gen_png_from_json(os.path.join( outFile, file_name), json_filename, jpg_filename )
                 except Exception:
                     print '!!!!!!!!!!!!!!!!!!!!' + json_filename + ' json error !!!!!!!!!!!!!!!!!!!!!'
                 
